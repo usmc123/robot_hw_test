@@ -1,0 +1,17 @@
+mylink:
+  robot_hw_test:
+    type: robot_hw_test_ns/MyRobotInterface
+    joints:
+      - joint_1
+      - joint_2
+# 
+
+  joint_controller_test:
+    type: robot_hw_test_ns/joint_controller_test
+    joint: 
+      - joint_1
+      - joint_2
+  # joint_state_controller:
+  #     type: joint_state_controller/JointStateController
+  #     publish_rate: 50  
+

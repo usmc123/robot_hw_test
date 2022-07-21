@@ -1,0 +1,16 @@
+
+<launch>
+    <rosparam file="$(find robot_hw_test)/config/hardware.yaml" command="load"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/mylink"
+            args="joint_controller_test"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/mylink/joint_states" />
+    </node>
+    <param name="robot_description" textfile="$(find mylink_urdf)/urdf/mylink_urdf.xacro"/>
+    
+    <include file="$(find mylink_urdf)/launch/gazebo.launch" />
+    
+</launch>

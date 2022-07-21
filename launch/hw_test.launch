@@ -1,0 +1,11 @@
+<launch>
+    <rosparam file="$(find robot_hw_test)/config/hardware.yaml" command="load"/>
+    <!-- 加载参数服务器 -->
+    <node name="hw_interface_node" pkg="robot_hw_test" type="hw_interface_node" output="screen"/>
+    <!-- 启动robothw节点 -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+        args="/mylink/joint_controller_test"/>
+    <!--启动控制器,这里有个很奇怪的事情,robothw理论上不能用controller_manager启动,事实也证明会报错,说robot_hw_test启动失败,但是如果不加这一行,接口就连接不上,我也不知道为什么,robothw是在节点中启动的,所以在这里启动失败没关系  -->
+</launch>
+
+<!-- /mylink/robot_hw_test -->
